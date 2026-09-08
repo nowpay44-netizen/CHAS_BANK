@@ -1,0 +1,2 @@
+{% set show_app = false %}
+{% extends "base.html" %}{% block content %}<div class="auth card"><h1>Forgot password</h1><form method="post"><label>Username</label><input name="username" required><button class="btn">Generate reset link</button></form>{% if link %}<div class="flash">Local demo reset link:<br><a href="{{link}}">{{link}}</a></div>{% endif %}</div>{% endblock %}

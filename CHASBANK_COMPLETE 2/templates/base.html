@@ -1,0 +1,14 @@
+
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>CHASBANK</title>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"></head><body>
+<div class="demo">CHASBANK DEMO • SIMULATION ONLY • NO REAL MONEY</div>
+{% if user %}
+<div class="shell"><aside class="sidebar">
+<div class="logo">CHASBANK</div><div class="profile"><div class="avatar">{{user["name"][0]|upper}}</div><div><b>{{user["name"]}}</b><small>@{{user["username"]}}</small></div></div>
+<div class="label">MAIN MENU</div>
+{% if user["username"]=="admin" %}<a class="nav active" href="/admin">⌂ Admin Dashboard</a><a class="nav" href="/admin#customers">👥 Registered Customers</a><a class="nav" href="/admin#generate">＋ Generate Funds</a><a class="nav" href="/admin#transactions">▣ Customer History</a><a class="nav" href="/admin#transfers">➤ Transfers & Receipts</a><div class="label">SUPPORT</div><a class="nav" href="/admin#support">💬 Customer Service</a>{% else %}<a class="nav active" href="/dashboard">⌂ Dashboard</a><a class="nav" href="/dashboard#deposit">↙ Deposit</a><a class="nav" href="/dashboard#withdraw">↗ Withdraw</a><a class="nav" href="/dashboard#transfer">➤ Transfer</a><a class="nav" href="/history">▣ Transaction History</a><div class="label">SERVICES</div><a class="nav" href="/dashboard">▯ Airtime</a><a class="nav" href="/dashboard">ϟ Electricity</a><a class="nav" href="/dashboard">◉ Data</a><a class="nav" href="/dashboard">▭ Cards</a><div class="label">HELP</div><a class="nav" href="/dashboard#support">💬 Customer Support</a>{% endif %}
+<div class="bottom"><a class="nav" href="/logout">⇥ Sign Out</a></div></aside>
+<section class="content"><header class="top"><button class="hamb" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button><b>CHASBANK</b><span>🔔　{{user["name"]}}</span></header>
+{% else %}<nav class="public"><b>CHASBANK</b><a href="/login">Sign in</a><a class="public-signup" href="/signup">Create account</a></nav><section class="content public-content">{% endif %}
+<main>{% with m=get_flashed_messages() %}{% if m %}<div class="flash">{{m[0]}}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main></section></div>
+</body></html>

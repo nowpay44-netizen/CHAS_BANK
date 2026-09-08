@@ -1,0 +1,2 @@
+{% set show_app = true %}
+{% extends "base.html" %}{% block content %}<h1>Transaction History</h1><p class="muted">All activity on your demo account.</p><div class="card">{% for t in tx %}<div class="row"><div><b>{{t["kind"]}}</b><small>{{t["created_at"]}} · {{t["status"]}} · {{t["note"]}}</small></div><strong class="{{t['direction']}}">{{"+" if t["direction"]=="credit" else "-"}}${{"{:,.2f}".format(t["amount"])}}</strong></div>{% else %}<p>No transactions.</p>{% endfor %}</div>{% endblock %}

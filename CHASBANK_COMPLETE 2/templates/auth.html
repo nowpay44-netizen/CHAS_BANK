@@ -1,0 +1,6 @@
+{% set show_app = false %}
+{% extends "base.html" %}{% block content %}<div class="auth card"><h1>{{"Create account" if mode=="signup" else "Sign in"}}</h1>
+<form method="post">{% if mode=="signup" %}<label>Full name</label><input name="name" required>{% endif %}
+<label>Username</label><input name="username" required>
+<label>Password</label><input type="password" name="password" required><button class="btn">{{"Create account" if mode=="signup" else "Sign in"}}</button></form>
+{% if mode=="login" %}<p><a href="/forgot">Forgot password?</a> · <a href="/signup">Create account</a></p>{% else %}<p>Already registered? <a href="/login">Sign in</a></p>{% endif %}</div>{% endblock %}
